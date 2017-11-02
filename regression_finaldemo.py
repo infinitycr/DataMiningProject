@@ -284,21 +284,11 @@ if __name__ == '__main__':
     long_infact_predict = []
     for typh in predict_list.copy():
         for elem in typh.copy():
-            lat_infact_predict.append(float(elem[0])*0.1 )
-            long_infact_predict.append(float(elem[1])*0.1)
+            lat_infact_predict.append(float(elem[0]) * 0.1)
+            long_infact_predict.append(float(elem[1]) * 0.1)
     # print(predlat_to_fact)
     # print(predlong_to_fact)
     test_lat_infact, test_long_infact = get_test(r"D:\demo4test\testingset")
-
-    print(lat_infact_predict)
-    print(test_lat_infact)
-    print(long_infact_predict)
-    print(test_long_infact)
-    # print(len(lat_infact_predict))
-    # print(len(test_lat_infact))
-    # print(len(long_infact_predict))
-    # print(len(test_long_infact))
-
 
     # list1 纬度预测误差(单位°N)
     list1 = []
@@ -310,14 +300,23 @@ if __name__ == '__main__':
 
     print_mean_var(list1)
     print_mean_var(list2)
-    # plt.plot(np.arange(0,len(lat_infact_predict)), list1, 'r', label='Lat_diff')
-    # plt.plot(np.arange(0,len(long_infact_predict)), list2, 'b', label='Long_diff')
+    plt.figure(1)
+    plt.legend(bbox_to_anchor=[0.3, 1])
+    plt.grid()
+    plt.plot(np.arange(0, len(lat_infact_predict)), list1, 'r', label='Lat_diff')
+    plt.plot(np.arange(0, len(long_infact_predict)), list2, 'b', label='Long_diff')
 
     # 预测与真实的纬度比较
+    plt.figure(2)
+    plt.legend(bbox_to_anchor=[0.3, 1])
+    plt.grid()
     plt.plot(np.arange(0, len(lat_infact_predict)), lat_infact_predict, 'r', label='Latitude_predict')
     plt.plot(np.arange(0, len(test_lat_infact)), test_lat_infact, 'b', label='Latitude_2014_2015')
 
     # 预测与真实的经度比较
+    plt.figure(3)
+    plt.legend(bbox_to_anchor=[0.3, 1])
+    plt.grid()
     plt.plot(np.arange(0, len(long_infact_predict)), long_infact_predict, 'k', label='Longitude_predict')
     plt.plot(np.arange(0, len(test_long_infact)), test_long_infact, 'm', label='Longitude_2014_2015')
 
@@ -364,7 +363,8 @@ if __name__ == '__main__':
     print("<100: ", count_lessthan_100 / len(distance_list))
     print("<50: ", count_lessthan_50 / len(distance_list))
     # 预测与真实的欧几里得距离
-    # plt.plot(np.arange(0, len(distance_list)), distance_list, 'c', label='distance')
+    plt.figure(4)
+    plt.plot(np.arange(0, len(distance_list)), distance_list, 'c', label='distance')
 
     plt.legend(bbox_to_anchor=[0.3, 1])
     plt.grid()
